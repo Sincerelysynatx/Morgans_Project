@@ -1,0 +1,3 @@
+<nav class="w3-topnav w3-theme-d2 w3-xlarge">
+    <a *ngFor="let group of groups | async" [routerLink]="['/groups', group._id]" class="w3-half w3-center">{{group.group_title}}</a>
+</nav>

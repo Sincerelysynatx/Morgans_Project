@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-0
+
 //noinspection TypeScriptCheckImport
-import template from './app.component.html';
+import template from './login.component.html';
 
 @Component({
-    selector: 'app',
+    selector: 'login',
     template
 })
 
-export class AppComponent {}
+export class LoginComponent{
+
+}
