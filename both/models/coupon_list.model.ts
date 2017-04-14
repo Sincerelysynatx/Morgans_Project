@@ -1,7 +1,6 @@
 import { CollectionObject } from './collection-object.model';
 import { Coupon } from './coupon.model';
 
-export interface Pair extends CollectionObject {
-    _id: string;
+export interface Coupon_List extends CollectionObject {
     coupon_list1: Array<Coupon>;
 }

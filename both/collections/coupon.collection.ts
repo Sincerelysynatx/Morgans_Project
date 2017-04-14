@@ -2,4 +2,4 @@ import { MongoObservable } from 'meteor-rxjs';
 
 import { Coupon } from '../models/coupon.model';
 
-export const Coupons = new MongoObservable.Collection<CouponCollection>('coupon');
+export const Coupons = new MongoObservable.Collection<Coupon>('coupon');

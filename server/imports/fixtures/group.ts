@@ -122,8 +122,6 @@ export function loadGroups(){
         }
         ];
 
-
-
         groups.forEach((group: Group) => Groups.insert(group));
     }
 }

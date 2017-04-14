@@ -1,19 +1,19 @@
 
-    <div *ngFor="let group of groups | async" class="w3-row">
-        <masonry [options]="myOptions">
-            <masonry-brick *ngFor="let link of group.links" class="w3-col s12 m6 l3 w3-animate-opacity">
-                <div class="w3-padding w3-margin w3-hover-shadow w3-card-2">
-                    <a href="{{link.url}}" target="_blank" style="text-decoration:none">
-                        <div>
-                            <h3>{{link.title}}</h3>
-                            <p>{{link.desc}}</p>
-                        </div>
-                    </a>
-                    <button class="w3-btn w3-theme" *ngIf="user" (click)="removeLink(link)">Remove</button>
-                </div>
-            </masonry-brick>
-        </masonry>
-    </div>
+<div *ngFor="let group of groups | async" class="w3-row">
+    <masonry [options]="myOptions">
+        <masonry-brick *ngFor="let link of group.links" class="w3-col s12 m6 l3 w3-animate-opacity">
+            <div class="w3-padding w3-margin w3-hover-shadow w3-card-2">
+                <a href="{{link.url}}" target="_blank" style="text-decoration:none">
+                    <div>
+                        <h3>{{link.title}}</h3>
+                        <p>{{link.desc}}</p>
+                    </div>
+                </a>
+                <button class="w3-btn w3-theme" *ngIf="user" (click)="removeLink(link)">Remove</button>
+            </div>
+        </masonry-brick>
+    </masonry>
+</div>
 
 
 <form *ngIf="user" [formGroup]="addForm" (ngSubmit)="addLink()" class="w3-container w3-theme w3-padding-large w3-card-4 w3-margin">

@@ -9,7 +9,7 @@ function loggedIn(){
     return !!Meteor.user();
 }
 
-Coupon_List.allow({
+Coupon_List_Collection.allow({
     insert: loggedIn,
     update: loggedIn,
     remove: loggedIn

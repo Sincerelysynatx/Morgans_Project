@@ -61,7 +61,7 @@ export class GroupComponent implements OnInit, OnDestroy{
         }
 
         if (this.addForm.valid) {
-            //noinspection TypeScriptUnresolvedFunction
+            //noinspection TypeScriptUnresolvedFunction,TypeScriptUnresolvedVariable
             Groups.update(this.groupId, {$push : {links : Object.assign({}, this.addForm.value, {_id : Random.id()})}});
             this.addForm.reset();
         }
