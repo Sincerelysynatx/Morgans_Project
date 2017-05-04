@@ -7,10 +7,8 @@ import { MasonryModule } from 'angular2-masonry';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-//import { HEADER_DECLARATIONS } from './header';
-import { NAVBAR_DECLARATIONS } from './navbar';
-//import { GROUPS_DECLARATIONS } from './groups';
 import { LOGIN_DECLARATIONS } from './login';
+import { CONTENT_DECLARATIONS } from './content';
 
 @NgModule({
     imports: [
@@ -23,8 +21,8 @@ import { LOGIN_DECLARATIONS } from './login';
     ],
     declarations: [
         AppComponent,
-        ...NAVBAR_DECLARATIONS,
-        ...LOGIN_DECLARATIONS
+        ...LOGIN_DECLARATIONS,
+        ...CONTENT_DECLARATIONS
     ],
     bootstrap: [
         AppComponent

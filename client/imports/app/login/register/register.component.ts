@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, NgZone } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Accounts } from 'meteor/accounts-base';
@@ -13,7 +13,7 @@ import template from './register.component.html';
     template
 })
 
-export class RegisterComponent implements OnInit, OnChanges{
+export class RegisterComponent implements OnInit{
 
     signUpForm: FormGroup;
     error: string;
@@ -26,10 +26,6 @@ export class RegisterComponent implements OnInit, OnChanges{
             email: ['', Validators.required],
             password: ['', Validators.required]
         });
-    }
-
-    ngOnChanges() {
-        console.log("Change");
     }
 
     signup(){
@@ -50,7 +46,7 @@ export class RegisterComponent implements OnInit, OnChanges{
                     console.log("Adding user");
                     Users.insert({_id: this.signUpForm.value.username, username: this.signUpForm.value.username});
                     document.getElementById('error_message').innerHTML = '';
-                    //this.router.navigate(['/content']);
+                    this.router.navigate(['/content/add']);
                 }
             });
         }
