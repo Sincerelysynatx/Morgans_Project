@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Accounts } from 'meteor/accounts-base';
+import { Subscription } from 'rxjs/Subscription';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MeteorObservable } from "meteor-rxjs";
 
 import { Pairs } from '../../../../../both/collections/pair.collection';
 import { Pair } from '../../../../../both/models/pair.model';
@@ -14,8 +16,9 @@ import template from './send.component.html';
     template
 })
 
-export class SendComponent implements OnInit{
+export class SendComponent implements OnInit, OnDestroy{
     pairs: Observable<Pair[]>;
+    pairsSub: Subscription;
     moneyForm: FormGroup;
 
     constructor(private formBuilder: FormBuilder){
@@ -26,6 +29,7 @@ export class SendComponent implements OnInit{
         this.moneyForm = this.formBuilder.group({
            amount: ['', Validators.required]
         });
+        this.pairsSub = MeteorObservable.subscribe('pairs').subscribe();
     }
 
 
@@ -37,5 +41,9 @@ export class SendComponent implements OnInit{
             Pairs.update({_id: pair._id}, {$inc: {id2_points: parseInt(this.moneyForm.value.amount)}});
 
         this.moneyForm.reset();
+    }
+
+    ngOnDestroy(){
+        this.pairsSub.unsubscribe();
     }
 }

@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 //noinspection TypeScriptCheckImport
 import { MasonryModule } from 'angular2-masonry';
+import { APP_BASE_HREF } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
@@ -26,6 +27,7 @@ import { CONTENT_DECLARATIONS } from './content';
     ],
     bootstrap: [
         AppComponent
-    ]
+    ],
+    providers: [{provide: APP_BASE_HREF, useValue: '/'}]
 })
 export class AppModule {}

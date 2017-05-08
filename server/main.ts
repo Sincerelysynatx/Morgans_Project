@@ -1,6 +1,8 @@
 import { Meteor } from 'meteor/meteor';
-import { loadUsers } from './imports/fixtures/user';
+
+import './imports/publications/pairs';
+import './imports/publications/users';
 
 Meteor.startup(() => {
-    loadUsers();
+
 });
