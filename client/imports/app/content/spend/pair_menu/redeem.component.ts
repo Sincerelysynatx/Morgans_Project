@@ -3,8 +3,6 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { MeteorObservable } from "meteor-rxjs";
 
-
-
 import { Pairs } from '../../../../../../both/collections/pair.collection';
 import { Pair } from '../../../../../../both/models/pair.model';
 
