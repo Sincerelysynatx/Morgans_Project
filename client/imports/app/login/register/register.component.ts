@@ -44,7 +44,7 @@ export class RegisterComponent implements OnInit{
                     });
                 } else {
                     console.log("Adding user");
-                    Users.insert({_id: this.signUpForm.value.username, username: this.signUpForm.value.username});
+                    Users.insert({_id: Meteor.userId(), username: this.signUpForm.value.username});
                     document.getElementById('error_message').innerHTML = '';
                     this.router.navigate(['/content/add']);
                 }
@@ -55,5 +55,4 @@ export class RegisterComponent implements OnInit{
             console.log("Problem signing up");
         }
     }
-
 }

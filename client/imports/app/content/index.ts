@@ -3,7 +3,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { AddComponent } from './add/add.component';
 import { SendComponent } from './send/send.component';
 import { SpendComponent } from "./spend/spend.component";
-import { PairMenuComponent } from "./spend/pair_menu/pair_menu.component";
+import { RedeemMenuComponent } from "./spend/pair_menu/redeem.component";
+import { CreateCouponComponent } from "./spend/create_coupons/create_coupon_menu.component";
 
 export const CONTENT_DECLARATIONS = [
     ContentComponent,
@@ -11,5 +12,6 @@ export const CONTENT_DECLARATIONS = [
     AddComponent,
     SendComponent,
     SpendComponent,
-    PairMenuComponent
+    RedeemMenuComponent,
+    CreateCouponComponent
 ];

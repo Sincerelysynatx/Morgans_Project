@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Observable'
-import { Accounts } from 'meteor/accounts-base';
+import { Observable } from 'rxjs/Observable';
+import { Meteor } from 'meteor/meteor';
 import { Subscription } from 'rxjs/Subscription';
 import { Random } from 'meteor/random';
 import { MeteorObservable } from "meteor-rxjs";
@@ -30,10 +30,11 @@ export class AddComponent implements OnInit, OnDestroy{
     }
 
     ngOnInit(){
-        this.users = Users.find({_id: {$ne: Accounts.user().username}}).zone();
         //this.pairs = Pairs.find({user1_id: {$ne: Accounts.user().username}, user2_id: {$ne: Accounts.user().username}});
-        this.my_user = Accounts.user().username;
-        this.usersSub = MeteorObservable.subscribe('users').subscribe();
+        this.my_user = Meteor.userId();
+        this.usersSub = MeteorObservable.subscribe('user').subscribe(() => {
+            this.users = Users.find({_id: {$ne: this.my_user}}).zone();
+        });
     }
 
     createPair(user: User):void {
@@ -43,9 +44,8 @@ export class AddComponent implements OnInit, OnDestroy{
         Coupon_List_Collection.insert({_id: coupon_list_id1, coupon_list: []});
         //noinspection TypeScriptValidateTypes
         Coupon_List_Collection.insert({_id: coupon_list_id2, coupon_list: []});
-        console.log(Accounts.user().username);
 
-        Pairs.insert({user1_id: Accounts.user().username,
+        Pairs.insert({user1_id: Users.findOne({_id: this.my_user}).username,
                       user2_id: user.username,
                       user1_coupon_list_id: coupon_list_id1,
                       user2_coupon_list_id: coupon_list_id2,

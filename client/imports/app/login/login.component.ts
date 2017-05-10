@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Accounts } from 'meteor/accounts-base';
+import { Meteor } from 'meteor/meteor';
 
 //noinspection TypeScriptCheckImport
 import template from './login.component.html';
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit{
                     if (err) {
                         document.getElementById("error").innerHTML = err['reason'];
                     } else {
-                        document.getElementById("error").innerHTML = "";
                         this.router.navigate(['/content/add']);
                     }
                 });

@@ -3,26 +3,37 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { MeteorObservable } from "meteor-rxjs";
 
+
+
 import { Pairs } from '../../../../../../both/collections/pair.collection';
 import { Pair } from '../../../../../../both/models/pair.model';
 
+import {Coupon} from "../../../../../../both/models/coupon.model";
+
 //noinspection TypeScriptCheckImport
-import template from './pair_menu.component.html';
+import template from './redeem.component.html';
 
 @Component({
     selector: 'pair_menu',
     template
 })
 
-export class PairMenuComponent implements OnInit, OnDestroy{
+export class RedeemMenuComponent implements OnInit, OnDestroy{
     pairs: Observable<Pair[]>;
+    coupons: Observable<Coupon[]>;
     pairsSub: Subscription;
+    couponsSub: Subscription;
+
 
     constructor(){}
 
     ngOnInit(){
-        this.pairs = Pairs.find().zone();
-        this.pairsSub = MeteorObservable.subscribe('pairs').subscribe();
+        this.pairsSub = MeteorObservable.subscribe('pair').subscribe(() => {
+            this.pairs = Pairs.find().zone();
+        });
+        this.couponsSub = MeteorObservable.subscribe('coupons').subscribe(() => {
+
+        });
     }
 
     ngOnDestroy(){

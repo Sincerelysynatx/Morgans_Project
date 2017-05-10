@@ -21,8 +21,9 @@ export class SpendComponent implements OnInit, OnDestroy{
     constructor(){}
 
     ngOnInit(){
-        this.pairs = Pairs.find().zone();
-        this.pairsSub = MeteorObservable.subscribe('pairs').subscribe();
+        this.pairsSub = MeteorObservable.subscribe('pair').subscribe(() => {
+            this.pairs = Pairs.find().zone();
+        });
     }
 
     ngOnDestroy(){

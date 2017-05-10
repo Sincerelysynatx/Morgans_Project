@@ -4,16 +4,16 @@
 
 <div *ngFor="let pair of pairs | async" class="row">
     <div class="col s12 m6 offset-m3 offset-s0">
-        <div class="card row" style="padding-bottom: 8px;">
+        <div class="card row">
             <div class="card-content" style="font-size: xx-large;">
                 {{pair.user1_id}}'s and {{pair.user2_id}}'s Pair
                 <p style="font-size: medium">{{pair.user1_id}}: {{pair.id1_points}} pts</p>
                 <p style="font-size: medium">{{pair.user2_id}}: {{pair.id2_points}} pts</p>
             </div>
-            <button class="btn waves-effect waves-light green col s5" [routerLink]="['store/' + pair._id]">Spend points!
+            <button class="btn waves-effect waves-light green" style="margin: 4px" [routerLink]="['store/' + pair._id]">Spend points!
                 <i class="mdi mdi-18px mdi-cash-multiple"></i>
             </button>
-            <button class="btn waves-effect waves-light green col s6 offset-s1" [routerLink]="['create/' + pair._id]">Create Coupons!
+            <button class="btn waves-effect waves-light green" [routerLink]="['create/' + pair._id]">Create Coupons!
                 <i class="mdi mdi-18px mdi-cash-multiple"></i>
             </button>
         </div>

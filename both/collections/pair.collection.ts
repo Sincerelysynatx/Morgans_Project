@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Pair } from '../models/pair.model';
 
-export const Pairs = new MongoObservable.Collection<Pair>('pair');
+export const Pairs = new MongoObservable.Collection<Pair>('pairs');
 
 function loggedIn(){
     return !!Meteor.user();
