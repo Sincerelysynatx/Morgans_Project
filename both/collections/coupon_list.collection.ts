@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Coupon_List } from '../models/coupon_list.model';
 
-export const Coupon_List_Collection = new MongoObservable.Collection<Coupon_List>('coupons_list');
+export const Coupon_List_Collection = new MongoObservable.Collection<Coupon_List>('coupon_list');
 
 function loggedIn(){
     return !!Meteor.user();

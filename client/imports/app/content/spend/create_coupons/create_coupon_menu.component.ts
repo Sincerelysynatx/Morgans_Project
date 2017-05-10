@@ -8,9 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Coupon_List_Collection } from '../../../../../../both/collections/coupon_list.collection';
 import { Coupon_List } from '../../../../../../both/models/coupon_list.model';
 
-
 import { Coupons } from "../../../../../../both/collections/coupon.collection";
-import { Coupon } from "../../../../../../both/models/coupon.model";
 
 import { Pairs } from '../../../../../../both/collections/pair.collection';
 import { Pair } from "../../../../../../both/models/pair.model";
@@ -27,7 +25,6 @@ import template from './create_coupon_menu.component.html';
 
 export class CreateCouponComponent implements OnInit, OnDestroy{
     coupon_list: Observable<Coupon_List[]>;
-
     paramSub: Subscription;
     addCouponForm: FormGroup;
     coupon_listIdForOther: string;
@@ -64,7 +61,7 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
             });
         });
         this.coupon_listSub = MeteorObservable.subscribe('coupon_list').subscribe();
-        this.couponsSub = MeteorObservable.subscribe('coupons').subscribe();
+        this.couponsSub = MeteorObservable.subscribe('coupon').subscribe();
     }
 
     addCoupon():void{
@@ -81,7 +78,7 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
             price: this.addCouponForm.value.price,
             coupon_listId: this.coupon_listIdForOther
         })._id;
-        Coupon_List_Collection.update({_id: this.coupon_listIdForOther}, {$push: {coupon_list: {newCouponId}}});
+        Coupon_List_Collection.update({_id: this.coupon_listIdForOther}, {$push: {coupon_list: newCouponId}});
         // Coupon_List_Collection.update({_id: this.coupon_listIdForOther},
         //     {$push:
         //     {coupon_list:
@@ -99,6 +96,7 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
         this.pairsSub.unsubscribe();
         this.usersSub.unsubscribe();
         this.couponsSub.unsubscribe();
+        this.paramSub.unsubscribe();
     }
 
 }

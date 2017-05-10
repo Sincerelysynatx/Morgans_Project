@@ -31,7 +31,7 @@ export class RedeemMenuComponent implements OnInit, OnDestroy{
         this.pairsSub = MeteorObservable.subscribe('pair').subscribe(() => {
             this.pairs = Pairs.find().zone();
         });
-        this.couponsSub = MeteorObservable.subscribe('coupons').subscribe(() => {
+        this.couponsSub = MeteorObservable.subscribe('coupon').subscribe(() => {
 
         });
     }
