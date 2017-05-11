@@ -37,7 +37,7 @@ export class SendComponent implements OnInit, OnDestroy{
             this.my_user = Users.findOne({_id: this.my_user}).username;
         });
         this.pairsSub = MeteorObservable.subscribe('pair').subscribe(() => {
-            this.pairs = Pairs.find({ $or: [{user1_id: this.my_user}, {user2_id: this.my_user}]});
+            this.pairs = Pairs.find({ $or: [{user1_id: this.my_user}, {user2_id: this.my_user}]}).zone();
         });
     }
 

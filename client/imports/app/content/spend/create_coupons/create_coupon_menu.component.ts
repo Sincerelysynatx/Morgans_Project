@@ -1,12 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { MeteorObservable } from "meteor-rxjs";
 import { ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Coupon_List_Collection } from '../../../../../../both/collections/coupon_list.collection';
-import { Coupon_List } from '../../../../../../both/models/coupon_list.model';
 
 import { Coupons } from "../../../../../../both/collections/coupon.collection";
 
@@ -24,16 +20,14 @@ import template from './create_coupon_menu.component.html';
 })
 
 export class CreateCouponComponent implements OnInit, OnDestroy{
-    coupon_list: Observable<Coupon_List[]>;
     paramSub: Subscription;
     addCouponForm: FormGroup;
-    coupon_listIdForOther: string;
     pairId: string;
     pair: Pair;
     pairsSub: Subscription;
     usersSub: Subscription;
     couponsSub: Subscription;
-    coupon_listSub: Subscription;
+    receiver_name: string;
     my_user: string;
 
     constructor(private route: ActivatedRoute, private formBuilder: FormBuilder){}
@@ -49,18 +43,16 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
             .map(params => params['pairId'])
             .subscribe(pairId => {
                 this.pairId = pairId;
-                // this.coupon_list = Coupon_List_Collection.find(coupon_listId).zone();
             });
         this.pairsSub = MeteorObservable.subscribe('pair').subscribe(() => {
             this.pair = Pairs.findOne({_id: this.pairId});
             this.usersSub = MeteorObservable.subscribe('user').subscribe(() => {
-                if (Users.findOne({_id:this.my_user }).username == this.pair.user1_id)
-                    this.coupon_listIdForOther = this.pair.user2_coupon_list_id;
+                if (Users.findOne({_id: this.my_user }).username == this.pair.user1_id)
+                    this.receiver_name = this.pair.user2_id;
                 else
-                    this.coupon_listIdForOther = this.pair.user1_coupon_list_id;
+                    this.receiver_name = this.pair.user1_id;
             });
         });
-        this.coupon_listSub = MeteorObservable.subscribe('coupon_list').subscribe();
         this.couponsSub = MeteorObservable.subscribe('coupon').subscribe();
     }
 
@@ -69,16 +61,17 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
             title: this.addCouponForm.value.title,
             desc: this.addCouponForm.value.desc,
             price: this.addCouponForm.value.price,
-            coupon_listId: this.coupon_listIdForOther
+            bestower: Users.findOne({_id: this.my_user}).username,
+            receiver: this.receiver_name,
+            pair_belongs: this.pairId
         });
-
-        var newCouponId = Coupons.findOne({
-            title: this.addCouponForm.value.title,
-            desc: this.addCouponForm.value.desc,
-            price: this.addCouponForm.value.price,
-            coupon_listId: this.coupon_listIdForOther
-        })._id;
-        Coupon_List_Collection.update({_id: this.coupon_listIdForOther}, {$push: {coupon_list: newCouponId}});
+        // var newCouponId = Coupons.findOne({
+        //     title: this.addCouponForm.value.title,
+        //     desc: this.addCouponForm.value.desc,
+        //     price: this.addCouponForm.value.price,
+        //     coupon_listId: this.coupon_listIdForOther
+        // })._id;
+        //Coupon_List_Collection.update({_id: this.coupon_listIdForOther}, {$push: {coupon_list: newCouponId}});
         // Coupon_List_Collection.update({_id: this.coupon_listIdForOther},
         //     {$push:
         //     {coupon_list:
@@ -92,7 +85,6 @@ export class CreateCouponComponent implements OnInit, OnDestroy{
     }
 
     ngOnDestroy(){
-        this.coupon_listSub.unsubscribe();
         this.pairsSub.unsubscribe();
         this.usersSub.unsubscribe();
         this.couponsSub.unsubscribe();

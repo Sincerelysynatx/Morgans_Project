@@ -2,29 +2,16 @@
     <h3 class="card col s10 m4 offset-s1 offset-m4" style="padding: 16px 0 16px">Add Users</h3>
 </div>
 
-<div *ngFor="let user of users | async" class="row center">
-    <div class="col s12 m6 offset-m3 offset-s0">
-        <div class="card">
-            <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="createPair(user)"><i class="mdi mdi-24px mdi-plus"></i></a>
-            <div class="card-content" style="font-size: xx-large;">
-                {{user.username}}
+<div class="container">
+    <div *ngFor="let user of users | async" class="row center">
+        <div class="col s12 m6 offset-m3 offset-s0">
+            <div class="card">
+                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" (click)="createPair(user)"><i class="mdi mdi-24px mdi-plus"></i></a>
+                <div class="card-content" style="font-size: xx-large;">
+                    {{user.username}}
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<!--<div *ngFor="let pair of pairs | async" class="row center">-->
-    <!--<div class="col s12 m6 offset-m3 offset-s0">-->
-        <!--<div class="card">-->
-            <!--<a class="btn-floating halfway-fab waves-effect waves-light red" (click)="createPair(user)"><i class="mdi mdi-24px mdi-plus"></i></a>-->
-            <!--<div class="card-content" style="font-size: xx-large;">-->
-                <!--<div *ngIf="pair.user1_id != my_user">-->
-                    <!--{{pair.user1_id}}-->
-                <!--</div>-->
-                <!--<div *ngIf="pair.user2_id != my_user">-->
-                    <!--{{pair.user2_id}}-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->

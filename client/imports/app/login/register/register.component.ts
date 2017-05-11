@@ -44,9 +44,9 @@ export class RegisterComponent implements OnInit{
                     });
                 } else {
                     console.log("Adding user");
-                    Users.insert({_id: Meteor.userId(), username: this.signUpForm.value.username});
+                    Users.insert({_id: Meteor.userId(), username: this.signUpForm.value.username, users_added: []});
                     document.getElementById('error_message').innerHTML = '';
-                    this.router.navigate(['/content/add']);
+                    this.router.navigate(['/login']);
                 }
             });
         }

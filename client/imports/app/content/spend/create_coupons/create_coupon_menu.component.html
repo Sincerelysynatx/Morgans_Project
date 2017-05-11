@@ -3,33 +3,31 @@
 </div>
 
 <br>
-
-<div style="position: relative">
-    <!--<div class="card" style="position: absolute; z-index: 1; padding: 0 24px 0 24px; top: -36px; margin: auto;">-->
-        <!--<h5>Create a coupon here</h5>-->
-    <!--</div>-->
-    <form [formGroup]="addCouponForm" (ngSubmit)="addCoupon()" class="card green lighten-4 row" >
-        <div class="row">
-            <div class="card input-field col s10 offset-s1 m10 offset-m1">
-                <h5>Title</h5>
-                <input placeholder="Breakfast in bed" formControlName="title" type="text" style="font-size: x-large">
+<div class="container">
+    <div style="position: relative">
+        <form [formGroup]="addCouponForm" (ngSubmit)="addCoupon()" class="card green lighten-4 row" >
+            <div class="row">
+                <div class="card input-field col s10 offset-s1 m10 offset-m1">
+                    <h5>Title</h5>
+                    <input placeholder="Breakfast in bed" formControlName="title" type="text" style="font-size: x-large">
+                </div>
+                <div class="card input-field col s7 offset-s1">
+                    <h5>Short Description</h5>
+                    <input placeholder="Redeem for a day where you get to eat breakfast in bed" formControlName="desc" type="text" style="font-size: large">
+                </div>
+                <div class="col s1" style="margin-top: 36px;">
+                    <i class="mdi mdi-48px mdi-cookie"></i>
+                </div>
+                <div class=" card input-field col s2">
+                    <h5>Price</h5>
+                    <input formControlName="price" step="50" type="number" style="font-size: x-large">
+                </div>
             </div>
-            <div class="card input-field col s7 offset-s1">
-                <h5>Short Description</h5>
-                <input placeholder="Redeem for a day where you get to eat breakfast in bed" formControlName="desc" type="text" style="font-size: large">
+            <div class="row">
+                <button class="btn waves-effect waves-light green col s10 offset-s1 m4 offset-m7" type="submit" style="font-size: larger;">Create!
+                    <i class="mdi mdi-18px mdi-send"></i>
+                </button>
             </div>
-            <div class="col s1" style="margin-top: 36px;">
-                <i class="mdi mdi-48px mdi-cash-usd"></i>
-            </div>
-            <div class=" card input-field col s2">
-                <h5>Price</h5>
-                <input formControlName="price" type="number" style="font-size: x-large">
-            </div>
-        </div>
-        <div class="row">
-            <button class="btn waves-effect waves-light green col s10 offset-s1 m4 offset-m7" type="submit" style="font-size: larger;">Create!
-                <i class="mdi mdi-18px mdi-send"></i>
-            </button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

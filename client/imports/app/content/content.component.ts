@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 //noinspection TypeScriptCheckImport
 import template from './content.component.html';
@@ -10,6 +11,10 @@ import template from './content.component.html';
 
 export class ContentComponent{
 
-    constructor(){}
+    constructor(private router: Router){
+        if (Meteor.userId() == undefined){
+            this.router.navigate(['/login']);
+        }
+    }
 
 }

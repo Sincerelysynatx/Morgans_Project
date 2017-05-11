@@ -2,20 +2,25 @@
     <h3 class="card col s10 m4 offset-s1 offset-m4" style="padding: 16px 0 16px">Spend Points</h3>
 </div>
 
-<div *ngFor="let pair of pairs | async" class="row">
-    <div class="col s12 m6 offset-m3 offset-s0">
-        <div class="card row">
-            <div class="card-content" style="font-size: xx-large;">
-                {{pair.user1_id}}'s and {{pair.user2_id}}'s Pair
-                <p style="font-size: medium">{{pair.user1_id}}: {{pair.id1_points}} pts</p>
-                <p style="font-size: medium">{{pair.user2_id}}: {{pair.id2_points}} pts</p>
+<div class="container">
+    <div *ngFor="let pair of pairs | async" class="row">
+        <div class="col s12 m6 offset-m3 offset-s0" style="position: relative;">
+            <div class="card row">
+                <div class="card-content" style="font-size: xx-large;">
+                    {{pair.user1_id}}'s and {{pair.user2_id}}'s Pair
+                    <p style="font-size: medium">{{pair.user1_id}}: {{pair.id1_points}} pts</p>
+                    <p style="font-size: medium">{{pair.user2_id}}: {{pair.id2_points}} pts</p>
+                </div>
             </div>
-            <button class="btn waves-effect waves-light green" style="margin: 4px" [routerLink]="['store/' + pair._id]">Spend points!
-                <i class="mdi mdi-18px mdi-cash-multiple"></i>
-            </button>
-            <button class="btn waves-effect waves-light green" [routerLink]="['create/' + pair._id]">Create Coupons!
-                <i class="mdi mdi-18px mdi-cash-multiple"></i>
-            </button>
+            <div class="fixed-action-btn horizontal" style="position: absolute">
+                <a class="btn-floating btn-large red">
+                    <i class="mdi mdi-24px mdi-menu"></i>
+                </a>
+                <ul>
+                    <li><a class="btn-floating green" [routerLink]="['store/' + pair._id]"><i class="mdi mdi-18px mdi-cash-multiple"></i></a></li>
+                    <li><a class="btn-floating blue" [routerLink]="['create/' + pair._id]"><i class="mdi mdi-24px mdi-pencil"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>
