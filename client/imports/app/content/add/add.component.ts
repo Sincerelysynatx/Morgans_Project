@@ -45,12 +45,15 @@ export class AddComponent implements OnInit, OnDestroy{
     }
 
     createPair(user: User):void {
-        Pairs.insert({user1_id: Users.findOne({_id: this.my_user}).username,
-                      user2_id: user.username,
-                      id1_points: 0,
-                      id2_points: 0
-        });
-        Users.update({_id: Meteor.userId()}, {$push: {users_added: {_id: user._id}}});
+        if (!Pairs.findOne({user1_id: Users.findOne({_id: this.my_user}).username, user2_id: user.username}) && !Pairs.findOne({user1_id: user.username, user2_id: Users.findOne({_id: this.my_user}).username}))
+        {
+            Pairs.insert({user1_id: Users.findOne({_id: this.my_user}).username,
+                user2_id: user.username,
+                id1_points: 0,
+                id2_points: 0
+            });
+            Users.update({_id: Meteor.userId()}, {$push: {users_added: {_id: user._id}}});
+        }
     }
 
     ngOnDestroy(){
