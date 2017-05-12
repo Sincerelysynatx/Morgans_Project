@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="row">
-        <button class="btn waves-effect waves-light green col s12 m4 offset-m8" (click)="signup()">Sign Up
+        <button class="btn waves-effect waves-light green col s12 m4 offset-m8" [disabled]="!signUpForm.valid" (click)="signup()">Sign Up
             <i class="mdi mdi-18px mdi-account-plus"></i>
         </button>
     </div>
