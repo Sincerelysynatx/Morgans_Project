@@ -6,6 +6,8 @@
     <h4>Account balance: {{balance}}</h4>
 </div>
 
+<br>
+
 <div class="container">
     <div *ngFor="let coupon of coupons | async">
         <form [formGroup]="submitCoupon" (ngSubmit)="redeemCoupon(coupon)" class="row">
@@ -13,7 +15,7 @@
                 <div class="card-content center-align row" style="padding-bottom: 0;">
                     <div class="col s12" style="font-size: xx-large; position: relative">
                         {{coupon.title}}
-                        <div class="card green lighten-2" style="position: absolute; right: -8px; top: -16px; padding: 0 8px 0 8px">
+                        <div class="card green lighten-2" style="position: absolute; right: -8px; top: -52px; padding: 0 8px 0 8px">
                             <i class="mdi mdi-24px mdi-cookie"></i>
                             {{coupon.price}}
                         </div>
@@ -28,5 +30,6 @@
                 Redeem!
             </button>
         </form>
+        <br>
     </div>
 </div>

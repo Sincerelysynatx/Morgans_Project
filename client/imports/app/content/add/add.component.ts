@@ -23,7 +23,7 @@ export class AddComponent implements OnInit, OnDestroy{
     pairsSub: Subscription;
     //pairs: Observable<Pair[]>;
     my_user: string;
-    added_users: Array<string>;
+    //added_users: Array<string>;
     constructor(){
     }
 
