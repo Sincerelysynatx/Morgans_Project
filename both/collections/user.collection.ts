@@ -9,7 +9,7 @@ Users.allow({
         return true;
     },
     update(){
-        return false;
+        return true;
     },
     remove(){
         return false;

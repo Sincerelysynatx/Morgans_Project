@@ -73,7 +73,7 @@ export class RedeemMenuComponent implements OnInit, OnDestroy{
             {
                 Pairs.update(this.pairId, {$inc: {id2_points: -coupon.price}});
                 this.pair = Pairs.findOne({_id: this.pairId});
-                this.balance = this.pair.id1_points;
+                this.balance = this.pair.id2_points;
             }
         }
     }
