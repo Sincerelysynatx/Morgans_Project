@@ -9,7 +9,6 @@ import { User } from '../../../../../both/models/user.model';
 
 import { Pairs } from '../../../../../both/collections/pair.collection';
 
-//noinspection TypeScriptCheckImport
 import template from './add.component.html';
 
 @Component({
@@ -54,6 +53,15 @@ export class AddComponent implements OnInit, OnDestroy{
             });
             Users.update({_id: Meteor.userId()}, {$push: {users_added: {_id: user._id}}});
         }
+    }
+
+    isDisabled(user: User): boolean{
+        var users = Users.findOne(this.my_user).users_added;
+        if (users.indexOf(user._id) > -1)
+        {
+            return false;
+        }
+        return true;
     }
 
     ngOnDestroy(){

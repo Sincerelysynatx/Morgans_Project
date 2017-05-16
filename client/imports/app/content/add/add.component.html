@@ -6,7 +6,9 @@
     <div *ngFor="let user of users | async" class="row center">
         <div class="col s12 m6 offset-m3 offset-s0">
             <div class="card">
-                <a class="btn-floating btn-large halfway-fab waves-effect waves-light red" (click)="createPair(user)"><i class="mdi mdi-24px mdi-plus"></i></a>
+                <button class="btn-floating btn-large halfway-fab waves-effect waves-light red" (click)="createPair(user)">
+                    <i class="mdi mdi-24px mdi-plus"></i>
+                </button>
                 <div class="card-content" style="font-size: xx-large;">
                     {{user.username}}
                 </div>
